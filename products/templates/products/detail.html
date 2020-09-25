@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for obj in objects %}
+    <p>{{ obj.name }}, {{obj.price}}, {{obj.description }}</p>
+    {% endfor %}
+{% endblock %}

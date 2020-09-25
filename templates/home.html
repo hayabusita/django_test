@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Hello World</h1>
+<p>This is home template</p>
+<p>{{ message }}, {{ version }}</p>
+<ul>
+    {% for item in objects %}
+        {% if item == 2 %}
+            In if
+        {% elif item == 'dos' %}
+            In elif
+        {% else %}
+            In else
+            <li>{{ forloop.counter }} - {{ item }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endblock %}
