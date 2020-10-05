@@ -9,10 +9,19 @@ def products_detailed_view(request):
     return render(request, 'products/detail.html', context)
 
 def product_create_view(request):
-    form = ProductForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-
-    context = {'form': form}
+    if request.method == 'POST':
+        new_name = request.POST.get('name')
+        print(new_name)
+        
+    context = {}
     return render(request, 'products/product_create.html', context)
+
+#def product_create_view(request):
+#    form = ProductForm(request.POST or None)
+#    
+#    if form.is_valid():
+#        form.save()
+#        form = ProductForm()
+#
+#    context = {'form': form}
+#    return render(request, 'products/product_create.html', context)
