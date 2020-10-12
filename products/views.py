@@ -30,7 +30,9 @@ def products_detailed_view(request):
 #    return render(request, 'products/product_create.html', context)
 
 def product_create_view(request):
-    form = ProductForm(request.POST or None)
+    initial_data = {'name': 'Initial name'}
+    obj = Product.objects.get(id=1)
+    form = ProductForm(request.POST or None, initial=initial_data, instance=obj)
    
     if form.is_valid():
        form.save()
