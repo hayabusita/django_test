@@ -26,13 +26,13 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'description', 'price']
     
-    def clean_name(self):
-        name = self.cleaned_data.get('name')
+    # def clean_name(self):
+    #     name = self.cleaned_data.get('name')
 
-        if 'new' not in name:
-            raise forms.ValidationError('new not found in name')
+    #     if 'new' not in name:
+    #         raise forms.ValidationError('new not found in name')
 
-        return name
+    #     return name
 
 class RawProductForm(forms.Form):
     name = forms.CharField(

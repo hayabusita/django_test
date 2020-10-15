@@ -2,6 +2,6 @@
 
 {% block content %}
     {% for obj in objects %}
-    <p>{{ obj.name }}, {{obj.price}}, {{obj.description }}</p>
+    <p><a href="{{ obj.get_absolute_url }}">{{ obj.id }}</a>, {{ obj.name }}, {{obj.price}}, {{obj.description }}</p>
     {% endfor %}
 {% endblock %}
