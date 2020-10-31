@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for article in art_list %}
+    <p><a href="{{ article.get_absolute_url }}">{{ article.id }}</a> - {{ article.title }} - {{ article.date }}</p>
+{% endfor %}
+{% endblock %}
