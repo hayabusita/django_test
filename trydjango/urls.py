@@ -18,6 +18,7 @@ from django.urls import include, path
 from pages.views import home_view
 
 urlpatterns = [
+    path('', include('accounts.urls')),
     path('articles/', include('blog.urls')),
     path('products/', include('products.urls')),
     path('admin/', admin.site.urls),

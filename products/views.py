@@ -1,8 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
 from .forms import ProductForm, RawProductForm
+#from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+
+from django.http import JsonResponse
 
 # Create your views here.
+def api_products_detailed_view(request):
+    queryset = Product.objects.all()
+    json_array = []
+    for product in queryset:
+        json_array.append({
+            "name": product.name,
+            "description": product.description,
+            "price": float(product.price)
+            })
+
+    return JsonResponse(json_array, safe=False)
+
 def products_detailed_view(request):
     obj = Product.objects.all()
     context = {'objects': obj}
@@ -29,12 +45,15 @@ def products_detailed_view(request):
 #    context = {}
 #    return render(request, 'products/product_create.html', context)
 
+@staff_member_required
 def product_create_view(request):
     form = ProductForm(request.POST or None)
    
     if form.is_valid():
-       form.save()
-       form = ProductForm()
+        obj = form.save(commit=False)
+        obj.user = request.user
+        obj.save()
+        form = ProductForm()
 
     context = {'form': form}
     return render(request, 'products/product_create.html', context)
